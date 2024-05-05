@@ -14,7 +14,13 @@ func init() {
 
 func main() {
 	r := gin.Default()
-	r.POST("/posts", controllers.PostsCreate)
+	r.GET("/ping", gin.HandlerFunc(func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	}))
+	
+
 	r.PUT("/posts/:id", controllers.PostsUpdate)
 	r.GET("/posts", controllers.PostsIndex)
 	r.GET("/posts/:id", controllers.PostsShow)
